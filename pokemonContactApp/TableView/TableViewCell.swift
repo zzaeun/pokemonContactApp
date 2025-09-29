@@ -28,8 +28,8 @@ class TableViewCell: UITableViewCell {
     
     private func configureUI() {
         profileImage.layer.cornerRadius = 30
-        profileImage.layer.borderColor = UIColor.gray.cgColor
-        profileImage.layer.borderWidth = 1
+        profileImage.layer.borderColor = UIColor.systemGray2.cgColor
+        profileImage.layer.borderWidth = 2
         
         
         name.text = "name"

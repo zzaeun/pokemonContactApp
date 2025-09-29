@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     func setConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(-10)
         }
         
         plutButton.snp.makeConstraints {
