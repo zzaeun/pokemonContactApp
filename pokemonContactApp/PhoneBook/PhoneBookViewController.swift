@@ -22,6 +22,8 @@ class PhoneBookViewController: UIViewController {
         
         configureUI()
         setConstraints()
+        
+        randomButton.addTarget(self, action: #selector(tappedRandomButton), for: .touchUpInside)
     }
     
     func configureUI() {
@@ -76,6 +78,11 @@ class PhoneBookViewController: UIViewController {
             $0.height.equalTo(40)
         }
         
+    }
+    
+    // 랜덤 이미지 생성 버튼
+    @objc func tappedRandomButton() {
+        print("random")
     }
 }
 
