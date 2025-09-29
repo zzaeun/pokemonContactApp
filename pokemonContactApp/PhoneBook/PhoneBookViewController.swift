@@ -38,6 +38,8 @@ class PhoneBookViewController: UIViewController {
         phoneTextField.borderStyle = .roundedRect
         phoneTextField.text = "phoneNumber"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "적용")
+        
         [imageView, randomButton, nameTextField, phoneTextField].forEach {
             view.addSubview($0)
         }

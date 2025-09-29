@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         addChildViewController()
         configureUI()
         setConstraints()
+        
+        plutButton.addTarget(self, action: #selector(tappedButton), for: .touchUpInside)
     }
 
     func configureUI() {
@@ -61,5 +63,13 @@ class ViewController: UIViewController {
         contactTableVC.didMove(toParent: self)
     }
 
+    // 버튼 눌렀을 때
+    @objc func tappedButton() {
+        let nextVC = PhoneBookViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
+        print("push")
+    }
+    
+    
 }
 
