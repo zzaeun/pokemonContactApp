@@ -25,18 +25,21 @@ class PhoneBookViewController: UIViewController {
     }
     
     func configureUI() {
-        imageView.layer.cornerRadius = 30
-        imageView.layer.borderColor = UIColor.systemGray4.cgColor
-        imageView.layer.borderWidth = 1.5
+        imageView.layer.cornerRadius = 80
+        imageView.layer.borderColor = UIColor.systemGray2.cgColor
+        imageView.layer.borderWidth = 2
         
         randomButton.setTitle("랜덤 이미지 생성", for: .normal)
-        randomButton.tintColor = .systemGray5
+        randomButton.setTitleColor(.gray, for: .normal)
+        randomButton.titleLabel?.font = .systemFont(ofSize: 12)
         
-        nameTextField.borderStyle = .roundedRect
-        nameTextField.text = "name"
+        nameTextField.layer.cornerRadius = 10
+        nameTextField.layer.borderColor = UIColor.systemGray4.cgColor
+        nameTextField.layer.borderWidth = 1
         
-        phoneTextField.borderStyle = .roundedRect
-        phoneTextField.text = "phoneNumber"
+        phoneTextField.layer.cornerRadius = 10
+        phoneTextField.layer.borderColor = UIColor.systemGray4.cgColor
+        phoneTextField.layer.borderWidth = 1
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "적용")
         
@@ -49,23 +52,33 @@ class PhoneBookViewController: UIViewController {
         
         imageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(100)
-            $0.width.height.equalTo(100)
+            $0.top.equalTo(120)
+            $0.width.height.equalTo(160
+            )
+        }
+        
+        randomButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(imageView.snp.bottom).offset(16)
         }
         
         nameTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(imageView.snp.bottom).offset(30)
-            $0.width.equalTo(300)
+            $0.top.equalTo(randomButton.snp.bottom).offset(30)
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(40)
         }
         
         phoneTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(nameTextField.snp.bottom).offset(30)
-            $0.width.equalTo(300)
+            $0.top.equalTo(nameTextField.snp.bottom).offset(12)
+            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(40)
         }
         
     }
+}
+
+#Preview {
+    PhoneBookViewController()
 }
