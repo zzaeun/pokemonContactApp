@@ -7,7 +7,7 @@
 
 import UIKit
 
-func PokemonAPI () {
+func PokemonAPI (imageView: UIImageView) {
     
     let randomID = Int.random(in: 1...1000)
     let urlString = "https://pokeapi.co/api/v2/pokemon/\(randomID)"
@@ -29,9 +29,18 @@ func PokemonAPI () {
             
         do {
             let model = try JSONDecoder().decode(PokemonData.self, from: data)
-            print("id:", model.id, "name:", model.name, "height:", model.height, "weight:", model.weight, "sprites:", model.sprites)
+            
+            // 이미지 불러오기
+            if let spriteURL = model.sprites.frontDefault,
+               let imageURL = URL(string: spriteURL) {
+                
+                PokemonImage(from: imageURL, into: imageView)
+            } else {
+                print("이미지 불러오기 실패")
+            }
+            
         } catch {
-            print("디코딩 실패 \(error)")
+            print("디코딩 실패")
         }
     } .resume()
     
