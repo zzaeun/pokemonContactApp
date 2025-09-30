@@ -23,7 +23,12 @@ class PhoneBookViewController: UIViewController {
         configureUI()
         setConstraints()
         
+        // 랜덤 이미지 생성 버튼
         randomButton.addTarget(self, action: #selector(tappedRandomButton), for: .touchUpInside)
+        
+        // 적용 버튼
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(applyTappedButton))
+        
     }
     
     func configureUI() {
@@ -38,12 +43,12 @@ class PhoneBookViewController: UIViewController {
         nameTextField.layer.cornerRadius = 10
         nameTextField.layer.borderColor = UIColor.systemGray4.cgColor
         nameTextField.layer.borderWidth = 1
-        
+        nameTextField.placeholder = "이름 입력"
+
         phoneTextField.layer.cornerRadius = 10
         phoneTextField.layer.borderColor = UIColor.systemGray4.cgColor
         phoneTextField.layer.borderWidth = 1
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "적용")
+        phoneTextField.placeholder = "전화번호 입력"
         
         [phoneBookProfileImage, randomButton, nameTextField, phoneTextField].forEach {
             view.addSubview($0)
@@ -84,8 +89,19 @@ class PhoneBookViewController: UIViewController {
     @objc func tappedRandomButton() {
         PokemonAPI(imageView: phoneBookProfileImage)
     }
-}
+    
+    // 적용 버튼
+    @objc func applyTappedButton() {
+        guard let name = nameTextField.text, !name.isEmpty,
+              let phone = phoneTextField.text, !phone.isEmpty else { return }
+        
+        let imageData = phoneBookProfileImage.image?.jpegData(compressionQuality: 1)
+        let contact = ContactData(name: name, phoneNumber: phone, profileImageData: imageData)
+        
+        // UserDefaults로 저장
+        ContactStorage.shared.save(contact: contact)
 
-#Preview {
-    PhoneBookViewController()
+        // 메인 화면으로 돌아가기
+        navigationController?.popViewController(animated: true)
+    }
 }

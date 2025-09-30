@@ -12,6 +12,9 @@ class TableViewController: UIViewController {
     
     var tableView = UITableView()
     
+    // 테이블 뷰에 보여줄 실제 데이터
+    var contacts: [ContactData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -19,6 +22,12 @@ class TableViewController: UIViewController {
         
         // cell을 table View에 등록
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        contacts = ContactStorage.shared.fetchContacts()
+        tableView.reloadData()
     }
     
     func configureUI() {
@@ -33,12 +42,13 @@ class TableViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
 }
 
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,6 +56,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
+        
+        // 해당 행에 데이터 가져오고 넣기
+        let contact = contacts[indexPath.row]
+        cell.configure(contact: contact)
         return cell
     }
     

@@ -27,16 +27,16 @@ class TableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+
         mainProfileImage.layer.cornerRadius = 30
         mainProfileImage.layer.borderColor = UIColor.systemGray2.cgColor
         mainProfileImage.layer.borderWidth = 2
         
-        
-        name.text = "name"
         name.textColor = .black
+        name.font = .systemFont(ofSize: 16)
         
-        phoneNumber.text = "010-0000-0000"
         phoneNumber.textColor = .black
+        phoneNumber.font = .systemFont(ofSize: 16)
         
         [mainProfileImage, name, phoneNumber].forEach {
             contentView.addSubview($0)
@@ -59,6 +59,15 @@ class TableViewCell: UITableViewCell {
         phoneNumber.snp.makeConstraints {
             $0.trailing.equalTo(-30)
             $0.centerY.equalToSuperview()
+        }
+    }
+    
+    // cell에 데이터(ContactData) 채워주는 함수
+    func configure(contact: ContactData) {
+        name.text = contact.name
+        phoneNumber.text = contact.phoneNumber
+        if let data = contact.profileImageData, let img = UIImage(data: data) {
+            mainProfileImage.image = img
         }
     }
 }
