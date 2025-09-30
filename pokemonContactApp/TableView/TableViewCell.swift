@@ -14,7 +14,7 @@ class TableViewCell: UITableViewCell {
     
     let name = UILabel()
     let phoneNumber = UILabel()
-    let profileImage = UIImageView()
+    let mainProfileImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,9 +27,9 @@ class TableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
-        profileImage.layer.cornerRadius = 30
-        profileImage.layer.borderColor = UIColor.systemGray2.cgColor
-        profileImage.layer.borderWidth = 2
+        mainProfileImage.layer.cornerRadius = 30
+        mainProfileImage.layer.borderColor = UIColor.systemGray2.cgColor
+        mainProfileImage.layer.borderWidth = 2
         
         
         name.text = "name"
@@ -38,21 +38,21 @@ class TableViewCell: UITableViewCell {
         phoneNumber.text = "010-0000-0000"
         phoneNumber.textColor = .black
         
-        [profileImage, name, phoneNumber].forEach {
+        [mainProfileImage, name, phoneNumber].forEach {
             contentView.addSubview($0)
         }
     }
     
     private func setConstraints() {
         
-        profileImage.snp.makeConstraints {
+        mainProfileImage.snp.makeConstraints {
             $0.width.height.equalTo(60)
             $0.leading.equalTo(30)
             $0.centerY.equalToSuperview()
         }
         
         name.snp.makeConstraints {
-            $0.leading.equalTo(profileImage.snp.trailing).offset(16)
+            $0.leading.equalTo(mainProfileImage.snp.trailing).offset(16)
             $0.centerY.equalToSuperview()
         }
         

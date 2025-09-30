@@ -10,7 +10,7 @@ import SnapKit
 
 class PhoneBookViewController: UIViewController {
     
-    private let imageView = UIImageView()
+    let phoneBookProfileImage = UIImageView()
     private let randomButton = UIButton()
     private let nameTextField = UITextField()
     private let phoneTextField = UITextField()
@@ -27,9 +27,9 @@ class PhoneBookViewController: UIViewController {
     }
     
     func configureUI() {
-        imageView.layer.cornerRadius = 80
-        imageView.layer.borderColor = UIColor.systemGray2.cgColor
-        imageView.layer.borderWidth = 2
+        phoneBookProfileImage.layer.cornerRadius = 80
+        phoneBookProfileImage.layer.borderColor = UIColor.systemGray2.cgColor
+        phoneBookProfileImage.layer.borderWidth = 2
         
         randomButton.setTitle("랜덤 이미지 생성", for: .normal)
         randomButton.setTitleColor(.gray, for: .normal)
@@ -45,14 +45,14 @@ class PhoneBookViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "적용")
         
-        [imageView, randomButton, nameTextField, phoneTextField].forEach {
+        [phoneBookProfileImage, randomButton, nameTextField, phoneTextField].forEach {
             view.addSubview($0)
         }
     }
     
     func setConstraints() {
         
-        imageView.snp.makeConstraints {
+        phoneBookProfileImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(120)
             $0.width.height.equalTo(160
@@ -61,7 +61,7 @@ class PhoneBookViewController: UIViewController {
         
         randomButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(imageView.snp.bottom).offset(16)
+            $0.top.equalTo(phoneBookProfileImage.snp.bottom).offset(16)
         }
         
         nameTextField.snp.makeConstraints {
