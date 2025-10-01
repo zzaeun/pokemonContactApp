@@ -67,4 +67,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    // 셀 선택 시 PhonBookViewController로 이동
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = PhoneBookViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
