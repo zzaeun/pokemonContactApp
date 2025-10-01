@@ -26,7 +26,7 @@ class TableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        contacts = ContactStorage.shared.fetchContacts()
+        contacts = ContactStorage.shared.fetchContacts().sorted { $0.name < $1.name }
         tableView.reloadData()
     }
     
