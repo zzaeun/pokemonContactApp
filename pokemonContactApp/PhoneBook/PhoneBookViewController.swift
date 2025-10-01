@@ -21,7 +21,6 @@ class PhoneBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "연락처 추가"
         
         configureUI()
         setConstraints()
@@ -36,6 +35,13 @@ class PhoneBookViewController: UIViewController {
     }
     
     func configureUI() {
+        // 네비게이션 바의 title
+        if let contact = contact {
+            self.title = contact.name
+        } else {
+            self.title = "연락처 추가"
+        }
+        
         phoneBookProfileImage.layer.cornerRadius = 80
         phoneBookProfileImage.layer.borderColor = UIColor.systemGray2.cgColor
         phoneBookProfileImage.layer.borderWidth = 2
