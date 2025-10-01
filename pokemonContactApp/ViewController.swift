@@ -63,13 +63,16 @@ class ViewController: UIViewController {
         contactTableVC.didMove(toParent: self)
     }
 
-    // 버튼 눌렀을 때
+    // 추가 버튼 눌렀을 때
     @objc func tappedButton() {
         let nextVC = PhoneBookViewController()
         navigationController?.pushViewController(nextVC, animated: true)
-        print("push")
+        
+        // 데이터 초기화
+//        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+//            UserDefaults.standard.removeObject(forKey: key.description)
+//        }
     }
-    
     
 }
 
