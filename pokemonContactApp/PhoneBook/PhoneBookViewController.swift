@@ -10,6 +10,9 @@ import SnapKit
 
 class PhoneBookViewController: UIViewController {
     
+    // 연락처 데이터 가져오기
+    var contact: ContactData?
+    
     let phoneBookProfileImage = UIImageView()
     private let randomButton = UIButton()
     private let nameTextField = UITextField()
@@ -22,6 +25,7 @@ class PhoneBookViewController: UIViewController {
         
         configureUI()
         setConstraints()
+        contactData()
         
         // 랜덤 이미지 생성 버튼
         randomButton.addTarget(self, action: #selector(tappedRandomButton), for: .touchUpInside)
@@ -103,5 +107,16 @@ class PhoneBookViewController: UIViewController {
 
         // 메인 화면으로 돌아가기
         navigationController?.popViewController(animated: true)
+    }
+    
+    // 데이터가 있으면 데이터 표시
+    private func contactData() {
+        if let contact = contact {
+            nameTextField.text = contact.name
+            phoneTextField.text = contact.phoneNumber
+            if let data = contact.profileImageData {
+                phoneBookProfileImage.image = UIImage(data: data)
+            }
+        }
     }
 }

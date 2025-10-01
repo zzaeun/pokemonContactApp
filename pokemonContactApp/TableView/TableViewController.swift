@@ -68,9 +68,11 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
-    // 셀 선택 시 PhonBookViewController로 이동
+    // 셀 선택 시 PhonBookViewController로 이동 + 데이터 전달
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = PhoneBookViewController()
+        let contact = contacts[indexPath.row]
+        nextVC.contact = contact
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }
