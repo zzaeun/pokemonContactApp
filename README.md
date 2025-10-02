@@ -1,5 +1,6 @@
 ## 🦧 포켓몬 연락처 앱 만들기 
 이 앱은 네트워크 통신을 이용해서 서버에서 랜덤 포켓몬 이미지를 불러오고, 연락처(이름, 전화번호, 프로필 이미지)를 저장 및 관리할 수 있습니다.
+
 <img width="160" height="400" alt="image" src="https://github.com/user-attachments/assets/3558bdfb-853d-450a-bab7-81dddfb583f2" /> 
 <img width="160" height="400" alt="image" src="https://github.com/user-attachments/assets/a38d7431-2fcb-45de-8cf0-b435b6a0982a" />
 
