@@ -24,6 +24,17 @@ class ContactStorage {
         }
     }
     
+    // 데이터 업데이트(수정)
+    func update(contact: ContactData) {
+        var contacts = fetchContacts()
+        if let index = contacts.firstIndex(where: { $0.id == contact.id} ) {
+            contacts[index] = contact
+            if let data = try? JSONEncoder().encode(contacts) {
+                UserDefaults.standard.set(data, forKey: key)
+            }
+        }
+    }
+    
     // 불러오기
     func fetchContacts() -> [ContactData] {
         guard let data = UserDefaults.standard.data(forKey: key),

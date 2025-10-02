@@ -9,7 +9,15 @@ import UIKit
 
 // 저장할 연락처 데이터들
 struct ContactData: Codable {
-    let name: String
-    let phoneNumber: String
-    let profileImageData: Data?
+    let id: UUID
+    var name: String
+    var phoneNumber: String
+    var profileImageData: Data?
+    
+    init(id: UUID = UUID(), name: String, phoneNumber: String, profileImageData: Data? = nil) {
+        self.id = id
+        self.name = name
+        self.phoneNumber = phoneNumber
+        self.profileImageData = profileImageData
+    }
 }

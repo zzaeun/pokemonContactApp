@@ -106,16 +106,29 @@ class PhoneBookViewController: UIViewController {
               let phone = phoneTextField.text, !phone.isEmpty else { return }
         
         let imageData = phoneBookProfileImage.image?.jpegData(compressionQuality: 1)
-        let contact = ContactData(name: name, phoneNumber: phone, profileImageData: imageData)
         
-        // UserDefaults로 저장
-        ContactStorage.shared.save(contact: contact)
+        let contactToSave: ContactData  // 최종적으로 저장할 ContactData 인스턴스
+        
+        // 기존 연락처 데이터 수정
+        if let updateContact = contact {
+            contactToSave = ContactData (
+                id: updateContact.id,  // 기존 id 그대로 사용
+                name: name,
+                phoneNumber: phone,
+                profileImageData: imageData
+            )
+            ContactStorage.shared.update(contact: contactToSave)
+        } else {
+            // 새로운 데이터 추가
+            let createContact = ContactData( name: name, phoneNumber: phone, profileImageData: imageData)
+            ContactStorage.shared.save(contact: createContact)
+        }
 
         // 메인 화면으로 돌아가기
         navigationController?.popViewController(animated: true)
     }
     
-    // 데이터가 있으면 데이터 표시
+    // 셀에 데이터가 있으면 셀을 눌렀을 때 나타나는 뷰에 데이터 표시
     private func contactData() {
         if let contact = contact {
             nameTextField.text = contact.name
