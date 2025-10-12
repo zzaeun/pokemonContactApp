@@ -45,6 +45,7 @@ class PhoneBookViewController: UIViewController {
         phoneBookProfileImage.layer.cornerRadius = 80
         phoneBookProfileImage.layer.borderColor = UIColor.systemGray2.cgColor
         phoneBookProfileImage.layer.borderWidth = 2
+        phoneBookProfileImage.clipsToBounds = true
         
         randomButton.setTitle("랜덤 이미지 생성", for: .normal)
         randomButton.setTitleColor(.gray, for: .normal)
