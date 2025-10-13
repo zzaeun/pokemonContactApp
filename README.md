@@ -43,3 +43,20 @@
 - Revert : 이전 커밋을 되돌리는 작업
 
 - Ex) [Add] "commit 내용"
+<br>
+
+---
+## 📁 Foldering
+```
+│   ├── ViewController.swift
+├── PhoneBook
+│   ├── ContactData.swift
+│   ├── ContactStorage.swift
+│   └── PhoneBookViewController.swift
+├── PokemonAPI
+│   ├── PokemonAPI.swift
+│   ├── PokemonData.swift
+│   └── PokemonImage.swift
+├── TableView
+│   ├── TableViewCell.swift
+│   └── TableViewController.swift
